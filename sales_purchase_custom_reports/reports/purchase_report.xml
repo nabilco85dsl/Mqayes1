@@ -1,0 +1,626 @@
+<odoo>
+    <data>
+
+
+        <function model="ir.actions.report" name="unlink_action">
+            <value eval="[ref('purchase.action_report_purchase_order')]"/>
+        </function>
+
+        <report id="purchase_order_custom_report" string="Purchase Order" model="purchase.order" report_type="qweb-pdf"
+                file="sales_purchase_custom_reports.purchase_report_template"
+                name="sales_purchase_custom_reports.purchase_report_template"/>
+
+
+        <template id="purchase_report_template">
+            <t t-call="web.html_container">
+                <t t-foreach="docs" t-as="o">
+                    <t t-call="web.basic_layout">
+
+
+                        <div class="header" style="margin-bottom:50;margin-top:0px;width:100%;height:1cm;">
+
+                            <div style="float:right;text-align:right;width:30%;font-size:12px;" dir="rtl">
+                                <strong>
+                                    <span t-field="o.company_id.arabic_name"/>
+                                    <br/>
+                                    <t t-if="o.company_id.arabic_street">
+                                        ,
+                                        <span t-field="o.company_id.arabic_street"/>
+                                    </t>
+                                    <t t-if="o.company_id.arabic_street2">
+                                        ,
+                                        <span t-field="o.company_id.arabic_street2"/>
+                                    </t>
+                                    <t t-if="o.company_id.arabic_city">
+
+                                        <span t-field="o.company_id.arabic_city"/>,
+                                    </t>
+                                </strong>
+
+                            </div>
+
+                            <div style="width:40%;float:right;text-align:center">
+                                <img t-if="res_company.logo" t-att-src="image_data_uri(res_company.logo)"
+                                     style="max-height: 130px;"/>
+                            </div>
+
+                            <div style="float:left;text-align:left;width:30%;font-size:12px;">
+                                <strong>
+                                    <span t-field="o.company_id"/>
+                                    <br/>
+                                    <t t-if="o.company_id.street">
+                                        ,
+                                        <span t-field="o.company_id.street"/>
+                                    </t>
+                                    <t t-if="o.company_id.street2">
+                                        ,
+                                        <span t-field="o.company_id.street2"/>
+                                    </t>
+                                    <br/>
+                                    <t t-if="o.company_id.city">
+                                        ,
+                                        <span t-field="o.company_id.city"/>
+                                    </t>
+                                    <t t-if="o.company_id.state_id">
+                                        ,
+                                        <span t-field="o.company_id.state_id"/>
+                                    </t>
+                                    <t t-if="o.company_id.country_id">
+                                        ,
+                                        <span t-field="o.company_id.country_id"/>
+                                    </t>
+
+
+                                </strong>
+
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="page">
+                            <t t-if="len(o.order_line)&lt;18">
+
+                                <div style="width:100%;height:800px;">
+
+                                    <table style="width:100%;border-width:1px;border-color:black;font-size:12px;"
+                                           class="table table-sm table-bordered oe_inline">
+
+                                        <tr>
+                                            <td colspan="1"
+                                                style="text-align:center;border-width:1px;border-color:black;font-size:15px;width:20%;">
+                                                <span style="float:left">Purchase Order #</span>
+                                            </td>
+
+                                            <td colspan="1"
+                                                style="text-align:center;border-width:1px;border-color:black;font-size:14px;width:55%;">
+                                                <center>
+                                                    <span t-field="o.name"/>
+                                                </center>
+                                            </td>
+                                            <td colspan="1"
+                                                style="text-align:center;border-width:1px;border-color:black;font-size:15px;width:25%;">
+                                                <span style="float:right">رقم أمر الشراء</span>
+                                            </td>
+
+                                        </tr>
+                                        <tr>
+                                            <td colspan="1"
+                                                style="text-align:center;border-width:1px;border-color:black;font-size:15px;width:20%;">
+                                                <span style="float:left">Vendor</span>
+                                            </td>
+
+                                            <td colspan="1"
+                                                style="text-align:center;border-width:1px;border-color:black;font-size:14px;width:55%;">
+                                                <center>
+                                                    <span t-field="o.partner_id"/>
+                                                </center>
+                                            </td>
+                                            <td colspan="1"
+                                                style="text-align:center;border-width:1px;border-color:black;font-size:15px;width:25%;">
+                                                <span style="float:right">إسم المورد</span>
+                                            </td>
+
+                                        </tr>
+
+
+                                        <tr>
+                                            <td colspan="1"
+                                                style="text-align:center;border-width:1px;border-color:black;font-size:15px;width:20%;">
+                                                <span style="float:left">Vendor Address</span>
+                                            </td>
+
+                                            <td colspan="1"
+                                                style="text-align:center;border-width:1px;border-color:black;font-size:14px;width:55%;">
+                                                <center>
+                                                    <t t-if="o.partner_id.street">
+                                                        <span t-field="o.partner_id.street"/>
+                                                    </t>
+                                                    <t t-if="o.partner_id.street2">
+                                                        ,
+                                                        <span t-field="o.partner_id.street"/>
+                                                    </t>
+                                                    <t t-if="o.partner_id.state_id">
+                                                        ,
+                                                        <span t-field="o.partner_id.state_id"/>
+                                                    </t>
+                                                    <t t-if="o.partner_id.country_id">
+                                                        ,
+                                                        <span t-field="o.partner_id.country_id"/>
+                                                    </t>
+                                                </center>
+                                            </td>
+                                            <td colspan="1"
+                                                style="text-align:center;border-width:1px;border-color:black;font-size:15px;width:25%;">
+                                                <span style="float:right">عنوان المورد</span>
+                                            </td>
+
+                                        </tr>
+
+
+                                        <tr>
+                                            <td colspan="1"
+                                                style="text-align:center;border-width:1px;border-color:black;font-size:15px;width:20%;">
+                                                <span style="float:left">Order Date</span>
+                                            </td>
+
+                                            <td colspan="1"
+                                                style="text-align:center;border-width:1px;border-color:black;font-size:14px;width:55%;">
+                                                <center>
+                                                    <span t-field="o.date_order"/>
+                                                </center>
+                                            </td>
+                                            <td colspan="1"
+                                                style="text-align:center;border-width:1px;border-color:black;font-size:15px;width:25%;">
+                                                <span style="float:right">تاريخ الطلب</span>
+                                            </td>
+
+                                        </tr>
+
+                                    </table>
+
+                                    <table style="width:100%;border-width:1px;border-color:black;font-size:12px;"
+                                           class="table table-sm table-bordered oe_inline">
+                                        <tr>
+                                            <th colspan="1"
+                                                style="text-align:center;border-width:1px;border-color:black;font-size:14px;width:3%;">
+                                                <center>#</center>
+                                            </th>
+                                            <th colspan="1"
+                                                style="text-align:center;border-width:1px;border-color:black;width:42%;">
+                                                <center>Description /
+                                                    <span>الوصف</span>
+                                                </center>
+                                            </th>
+                                            <th colspan="1"
+                                                style="text-align:center;border-width:1px;border-color:black;width:9%;">
+                                                <center>Qty /
+                                                    <span>الكمية</span>
+                                                </center>
+                                            </th>
+                                            <th colspan="1"
+                                                style="text-align:center;border-width:1px;border-color:black;width:17%;">
+                                                <center>Unit Price /
+                                                    <span>سعر الوحدة</span>
+                                                </center>
+                                            </th>
+
+                                            <th colspan="1"
+                                                style="text-align:center;border-width:1px;border-color:black;width:14%;">
+                                                <center>Taxs /
+                                                    <span>الضريبة</span>
+                                                </center>
+                                            </th>
+
+
+                                            <th colspan="1"
+                                                style="text-align:center;border-width:1px;border-color:black;width:15%;">
+                                                <center>Amount /
+                                                    <span>المبلغ</span>
+                                                </center>
+                                            </th>
+                                        </tr>
+                                        <t t-set="counter" t-value="0"/>
+                                        <tr t-foreach="o.order_line" t-as="line">
+
+                                            <t t-if="line.display_type == 'line_section'">
+                                                <td colspan="6"
+                                                    style="text-align:left;border-width:1px;border-color:black;width:100%;background-color:#e6e6e6;font-size:15px;">
+
+                                                    <span t-field="line.name" t-options="{'widget': 'text'}"/>
+                                                </td>
+                                            </t>
+
+                                            <t t-else="">
+
+                                                <t t-set="counter" t-value="counter+1"/>
+                                                <td colspan="1"
+                                                    style="text-align:center;border-width:1px;border-color:black;width:3%;">
+                                                    <center>
+                                                        <span t-esc="counter"/>
+                                                    </center>
+                                                </td>
+                                                <td colspan="1"
+                                                    style="text-align:center;border-width:1px;border-color:black;width:42%;">
+                                                    <center>
+                                                        <span t-esc="line.name"/>
+                                                    </center>
+                                                </td>
+                                                <td colspan="1"
+                                                    style="text-align:center;border-width:1px;border-color:black;width:9%;">
+                                                    <center>
+                                                        <span t-esc="line.product_qty"/>
+                                                    </center>
+                                                </td>
+                                                <td colspan="1"
+                                                    style="text-align:center;border-width:1px;border-color:black;width:17%;">
+                                                    <center>
+                                                        <span t-esc="line.price_unit"/>
+                                                    </center>
+                                                </td>
+                                                <td colspan="1"
+                                                    style="text-align:center;border-width:1px;border-color:black;width:14%;">
+                                                    <center>
+                                                        <span t-esc="', '.join(map(lambda x: x.name, line.taxes_id))"/>
+                                                    </center>
+                                                </td>
+                                                <td colspan="1"
+                                                    style="text-align:center;border-width:1px;border-color:black;width:15%;">
+                                                    <center>
+                                                        <span t-esc="line.price_subtotal"/>
+                                                    </center>
+                                                </td>
+                                            </t>
+                                        </tr>
+                                    </table>
+                                    <div id="total" class="row justify-content-end">
+                                        <div class="col-6">
+                                            <table class="table table-sm">
+                                                <t t-set="tax_totals" t-value="json.loads(o.tax_totals_json)"/>
+
+                                                <t t-foreach="tax_totals['subtotals']" t-as="subtotal">
+                                                    <tr class="border-black o_subtotal">
+                                                        <td>
+                                                            <strong t-esc="subtotal['name']"/>
+                                                            /
+                                                            <strong>الإجمالي بدون ضريبة</strong>
+                                                        </td>
+
+                                                        <td class="text-right">
+                                                            <span
+                                                                    t-att-class="oe_subtotal_footer_separator"
+                                                                    t-esc="subtotal['formatted_amount']"
+                                                            />
+                                                        </td>
+                                                    </tr>
+
+                                                    <t t-set="subtotal_to_show" t-value="subtotal['name']"/>
+                                                    <t t-call="account.tax_groups_totals"/>
+                                                </t>
+
+                                                <tr class="border-black o_total">
+                                                    <t t-if="tax_totals['subtotals']">
+                                                        <td>
+                                                            <strong>Total / الإجمالي بعد الضريبة</strong>
+                                                        </td>
+                                                    </t>
+                                                    <t t-else="">
+                                                        <td>
+                                                            <strong>Total / الإجمالي</strong>
+                                                        </td>
+                                                    </t>
+
+                                                    <td class="text-right">
+                                                        <span t-esc="tax_totals['formatted_amount_total']"/>
+                                                    </td>
+                                                </tr>
+
+                                            </table>
+                                        </div>
+                                    </div>
+                                    <p t-field="o.notes"/>
+
+                                </div>
+                                <div style="width:100%;text-align:center;">
+                                        <img class="img img-responsive"
+                                             t-att-src="'/sales_purchase_custom_reports/static/src/img/signature.jpeg'"
+                                             height="150" width="180"/>
+                                    </div>
+                            </t>
+                            <t t-if="len(o.order_line)&gt;17">
+
+                                <div style="width:100%; ">
+
+                                    <table style="width:100%;border-width:1px;border-color:black;font-size:12px;"
+                                           class="table table-sm table-bordered oe_inline">
+
+                                        <tr>
+                                            <td colspan="1"
+                                                style="text-align:center;border-width:1px;border-color:black;font-size:15px;width:20%;">
+                                                <span style="float:left">Purchase Order #</span>
+                                            </td>
+
+                                            <td colspan="1"
+                                                style="text-align:center;border-width:1px;border-color:black;font-size:14px;width:55%;">
+                                                <center>
+                                                    <span t-field="o.name"/>
+                                                </center>
+                                            </td>
+                                            <td colspan="1"
+                                                style="text-align:center;border-width:1px;border-color:black;font-size:15px;width:25%;">
+                                                <span style="float:right">رقم أمر الشراء</span>
+                                            </td>
+
+                                        </tr>
+                                        <tr>
+                                            <td colspan="1"
+                                                style="text-align:center;border-width:1px;border-color:black;font-size:15px;width:20%;">
+                                                <span style="float:left">Vendor</span>
+                                            </td>
+
+                                            <td colspan="1"
+                                                style="text-align:center;border-width:1px;border-color:black;font-size:14px;width:55%;">
+                                                <center>
+                                                    <span t-field="o.partner_id"/>
+                                                </center>
+                                            </td>
+                                            <td colspan="1"
+                                                style="text-align:center;border-width:1px;border-color:black;font-size:15px;width:25%;">
+                                                <span style="float:right">إسم المورد</span>
+                                            </td>
+
+                                        </tr>
+
+
+                                        <tr>
+                                            <td colspan="1"
+                                                style="text-align:center;border-width:1px;border-color:black;font-size:15px;width:20%;">
+                                                <span style="float:left">Vendor Address</span>
+                                            </td>
+
+                                            <td colspan="1"
+                                                style="text-align:center;border-width:1px;border-color:black;font-size:14px;width:55%;">
+                                                <center>
+                                                    <t t-if="o.partner_id.street">
+                                                        <span t-field="o.partner_id.street"/>
+                                                    </t>
+                                                    <t t-if="o.partner_id.street2">
+                                                        ,
+                                                        <span t-field="o.partner_id.street"/>
+                                                    </t>
+                                                    <t t-if="o.partner_id.state_id">
+                                                        ,
+                                                        <span t-field="o.partner_id.state_id"/>
+                                                    </t>
+                                                    <t t-if="o.partner_id.country_id">
+                                                        ,
+                                                        <span t-field="o.partner_id.country_id"/>
+                                                    </t>
+                                                </center>
+                                            </td>
+                                            <td colspan="1"
+                                                style="text-align:center;border-width:1px;border-color:black;font-size:15px;width:25%;">
+                                                <span style="float:right">عنوان المورد</span>
+                                            </td>
+
+                                        </tr>
+
+
+                                        <tr>
+                                            <td colspan="1"
+                                                style="text-align:center;border-width:1px;border-color:black;font-size:15px;width:20%;">
+                                                <span style="float:left">Order Date</span>
+                                            </td>
+
+                                            <td colspan="1"
+                                                style="text-align:center;border-width:1px;border-color:black;font-size:14px;width:55%;">
+                                                <center>
+                                                    <span t-field="o.date_order"/>
+                                                </center>
+                                            </td>
+                                            <td colspan="1"
+                                                style="text-align:center;border-width:1px;border-color:black;font-size:15px;width:25%;">
+                                                <span style="float:right">تاريخ الطلب</span>
+                                            </td>
+
+                                        </tr>
+
+                                    </table>
+
+                                    <table style="width:100%;border-width:1px;border-color:black;font-size:12px;"
+                                           class="table table-sm table-bordered oe_inline">
+                                        <tr>
+                                            <th colspan="1"
+                                                style="text-align:center;border-width:1px;border-color:black;font-size:14px;width:3%;">
+                                                <center>#</center>
+                                            </th>
+                                            <th colspan="1"
+                                                style="text-align:center;border-width:1px;border-color:black;width:42%;">
+                                                <center>Description /
+                                                    <span>الوصف</span>
+                                                </center>
+                                            </th>
+                                            <th colspan="1"
+                                                style="text-align:center;border-width:1px;border-color:black;width:9%;">
+                                                <center>Qty /
+                                                    <span>الكمية</span>
+                                                </center>
+                                            </th>
+                                            <th colspan="1"
+                                                style="text-align:center;border-width:1px;border-color:black;width:17%;">
+                                                <center>Unit Price /
+                                                    <span>سعر الوحدة</span>
+                                                </center>
+                                            </th>
+
+                                            <th colspan="1"
+                                                style="text-align:center;border-width:1px;border-color:black;width:14%;">
+                                                <center>Taxs /
+                                                    <span>الضريبة</span>
+                                                </center>
+                                            </th>
+
+
+                                            <th colspan="1"
+                                                style="text-align:center;border-width:1px;border-color:black;width:15%;">
+                                                <center>Amount /
+                                                    <span>المبلغ</span>
+                                                </center>
+                                            </th>
+                                        </tr>
+                                        <t t-set="counter" t-value="0"/>
+                                        <tr t-foreach="o.order_line" t-as="line">
+
+                                            <t t-if="line.display_type == 'line_section'">
+                                                <td colspan="6"
+                                                    style="text-align:left;border-width:1px;border-color:black;width:100%;background-color:#e6e6e6;font-size:15px;">
+
+                                                    <span t-field="line.name" t-options="{'widget': 'text'}"/>
+                                                </td>
+                                            </t>
+
+                                            <t t-else="">
+
+                                                <t t-set="counter" t-value="counter+1"/>
+                                                <td colspan="1"
+                                                    style="text-align:center;border-width:1px;border-color:black;width:3%;">
+                                                    <center>
+                                                        <span t-esc="counter"/>
+                                                    </center>
+                                                </td>
+                                                <td colspan="1"
+                                                    style="text-align:center;border-width:1px;border-color:black;width:42%;">
+                                                    <center>
+                                                        <span t-esc="line.name"/>
+                                                    </center>
+                                                </td>
+                                                <td colspan="1"
+                                                    style="text-align:center;border-width:1px;border-color:black;width:9%;">
+                                                    <center>
+                                                        <span t-esc="line.product_qty"/>
+                                                    </center>
+                                                </td>
+                                                <td colspan="1"
+                                                    style="text-align:center;border-width:1px;border-color:black;width:17%;">
+                                                    <center>
+                                                        <span t-esc="line.price_unit"/>
+                                                    </center>
+                                                </td>
+                                                <td colspan="1"
+                                                    style="text-align:center;border-width:1px;border-color:black;width:14%;">
+                                                    <center>
+                                                        <span t-esc="', '.join(map(lambda x: x.name, line.taxes_id))"/>
+                                                    </center>
+                                                </td>
+                                                <td colspan="1"
+                                                    style="text-align:center;border-width:1px;border-color:black;width:15%;">
+                                                    <center>
+                                                        <span t-esc="line.price_subtotal"/>
+                                                    </center>
+                                                </td>
+                                            </t>
+                                        </tr>
+                                    </table>
+                                    <div id="total" class="row justify-content-end">
+                                        <div class="col-6">
+                                            <table class="table table-sm">
+                                                <t t-set="tax_totals" t-value="json.loads(o.tax_totals_json)"/>
+
+                                                <t t-foreach="tax_totals['subtotals']" t-as="subtotal">
+                                                    <tr class="border-black o_subtotal">
+                                                        <td>
+                                                            <strong t-esc="subtotal['name']"/>
+                                                            /
+                                                            <strong>الإجمالي بدون ضريبة</strong>
+                                                        </td>
+
+                                                        <td class="text-right">
+                                                            <span
+                                                                    t-att-class="oe_subtotal_footer_separator"
+                                                                    t-esc="subtotal['formatted_amount']"
+                                                            />
+                                                        </td>
+                                                    </tr>
+
+                                                    <t t-set="subtotal_to_show" t-value="subtotal['name']"/>
+                                                    <t t-call="account.tax_groups_totals"/>
+                                                </t>
+
+                                                <tr class="border-black o_total">
+                                                    <t t-if="tax_totals['subtotals']">
+                                                        <td>
+                                                            <strong>Total / الإجمالي بعد الضريبة</strong>
+                                                        </td>
+                                                    </t>
+                                                    <t t-else="">
+                                                        <td>
+                                                            <strong>Total / الإجمالي</strong>
+                                                        </td>
+                                                    </t>
+
+                                                    <td class="text-right">
+                                                        <span t-esc="tax_totals['formatted_amount_total']"/>
+                                                    </td>
+                                                </tr>
+
+                                            </table>
+                                        </div>
+                                    </div>
+                                    <p t-field="o.notes"/>
+                                </div>
+                                <div style="width:100%;text-align:center;">
+                                        <img class="img img-responsive"
+                                             t-att-src="'/sales_purchase_custom_reports/static/src/img/signature.jpeg'"
+                                             height="150" width="180"/>
+                                    </div>
+                            </t>
+
+
+                        </div>
+                        <div class="footer o_boxed_footer">
+                            <div class="text-center">
+                                <ul class="list-inline">
+                                    <li t-if="o.company_id.phone" class="list-inline-item">Tel:
+                                        <span t-field="o.company_id.phone"/>
+                                    </li>
+                                    <li t-if="o.company_id.email" class="list-inline-item">Mail:
+                                        <span t-field="o.company_id.email"/>
+                                    </li>
+                                    <li t-if="o.company_id.website" class="list-inline-item">Web:
+                                        <span t-field="o.company_id.website"/>
+                                    </li>
+
+                                    <li t-if="o.company_id.company_registry" class="list-inline-item">
+                                        <t
+                                                t-esc="('C.R').replace(' ','\N{NO-BREAK SPACE}')"/>
+                                        :
+                                        <span t-esc="o.company_id.company_registry.replace(' ','\N{NO-BREAK SPACE}')"/>
+                                    </li>
+
+                                    <li t-if="o.company_id.vat" class="list-inline-item">
+                                        <t
+                                                t-esc="(o.company_id.country_id.vat_label or 'Tax ID').replace(' ','\N{NO-BREAK SPACE}')"/>
+                                        :
+                                        <span t-esc="o.company_id.vat.replace(' ','\N{NO-BREAK SPACE}')"/>
+                                    </li>
+
+
+                                </ul>
+                                <div t-if="report_type == 'pdf'">
+                                    Page:
+                                    <span class="page"/>
+                                    /
+                                    <span class="topage"/>
+                                </div>
+                            </div>
+                        </div>
+
+                    </t>
+                </t>
+            </t>
+        </template>
+
+
+    </data>
+</odoo>

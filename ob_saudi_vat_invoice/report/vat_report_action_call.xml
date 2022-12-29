@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data>
+
+	<report 
+		id="action_report_tax_invoice"
+		string="VAT Invoice Report"
+		model="account.move"
+		report_type="qweb-pdf"
+		file="ob_saudi_vat_invoice.report_tax_invoice"
+		name="ob_saudi_vat_invoice.report_tax_invoice"
+		print_report_name="(object._get_report_base_filename())"/>
+		<!-- print_report_name="'VAT Invoice -%s' %(object.partner_id.name)"/> -->
+
+	<report 
+		id="action_report_tax_invoice_preview"
+		string="VAT Invoice Report"
+		model="account.move"
+		report_type="qweb-pdf"
+		menu="False"
+		file="ob_saudi_vat_invoice.preview_report_tax_invoice"
+		name="ob_saudi_vat_invoice.preview_report_tax_invoice"
+		print_report_name="(object._get_report_base_filename())"/>
+
+<!--        <record id="paperformat_action_report_tax_invoice" model="report.paperformat">-->
+<!--            <field name="name">VAT Invoice Report</field>-->
+<!--			<field name="default" eval="True" />-->
+<!--			<field name="format">custom</field>-->
+<!--			<field name="page_height">0</field>-->
+<!--			<field name="page_width">0</field>-->
+<!--			<field name="orientation">Portrait</field>-->
+<!--			<field name="margin_top">45</field>-->
+<!--			<field name="margin_bottom">15</field>-->
+<!--			<field name="margin_left">10</field>-->
+<!--			<field name="margin_right">10</field>-->
+<!--			<field name="header_line" eval="False" />-->
+<!--			<field name="header_spacing">40</field>-->
+<!--			<field name="dpi">90</field>-->
+<!--            <field name="report_ids" eval="[(6,0,[ref('ob_saudi_vat_invoice.action_report_tax_invoice'), ref('ob_saudi_vat_invoice.action_report_tax_invoice_preview')])]"/>-->
+<!--        </record>-->
+
+	<report
+		id="action_report_simplified_tax_invoice"
+		string="Simplified VAT Invoice Report"
+		model="account.move"
+		report_type="qweb-pdf"
+		file="ob_saudi_vat_invoice.report_simplified_tax_invoice"
+		name="ob_saudi_vat_invoice.report_simplified_tax_invoice"
+		menu="False"
+		print_report_name="(object._get_report_base_filename())"/>
+		<!-- print_report_name="'Simplified Tax Invoice -%s' %(object.partner_id.name)"/> -->
+
+        <record id="paperformat_simplified_tax_invoice" model="report.paperformat">
+	        <field name="name">Simplified VAT Invoice Report</field>
+	        <field name="default" eval="True" />
+	        <field name="format">custom</field>
+	        <field name="page_height">0</field>
+			<field name="page_width">0</field>
+			<field name="orientation">Portrait</field>
+			<field name="margin_top">45</field>
+			<field name="margin_bottom">15</field>
+			<field name="margin_left">5</field>
+			<field name="margin_right">5</field>
+			<field name="header_line" eval="False" />
+			<field name="header_spacing">40</field>
+			<field name="dpi">90</field>
+            <field name="report_ids" eval="[(6,0,[ref('ob_saudi_vat_invoice.action_report_simplified_tax_invoice')])]"/>
+        </record>
+
+	</data>
+</odoo>

@@ -1,0 +1,44 @@
+<odoo>
+  <data>
+
+
+
+
+
+
+
+
+      <record id="form_view_account_move_inherit" model="ir.ui.view">
+          <field name="name">name.account.move.inherit.form</field>
+          <field name="model">account.move</field>
+          <field name="inherit_id" ref="account.view_move_form"/>
+          <field name="arch" type="xml">
+
+              <xpath expr="//field[@name='payment_reference']" position="after">
+                  <field name="invoice_type_custom" widget="radio" options="{'horizontal': true}"/>
+              </xpath>
+
+          </field>
+      </record>
+
+
+
+
+
+
+
+    <record id="form_view_res_partner_inherit" model="ir.ui.view">
+        <field name="name">name.res.partner.inherit.form</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form"/>
+        <field name="arch" type="xml">
+
+            <xpath expr="//page[@name='sales_purchases']//field[@name='company_id']" position="after">
+                <field name="customer_code"/>
+            </xpath>
+
+        </field>
+    </record>
+
+  </data>
+</odoo>

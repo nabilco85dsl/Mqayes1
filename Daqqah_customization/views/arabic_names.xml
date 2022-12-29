@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="daqqa_product_arabic_inherit_form" model="ir.ui.view">
+            <field name="name">daqqa_product_arabic_inherit_form</field>
+            <field name="model">product.template</field>
+            <field name="inherit_id" ref="product.product_template_form_view"/>
+            <field name="arch" type="xml">
+                <xpath expr="//div[@name='options']" position="before">
+                    <field name="arabic_name" placeholder="الاسم باللغه العربية"/>
+
+                </xpath>
+            </field>
+        </record>
+        <record id="daqqa_partner_arabic_inherit_form" model="ir.ui.view">
+            <field name="name">daqqa_partner_arabic_inherit_form</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="base.view_partner_form"/>
+            <field name="arch" type="xml">
+                <field name="name" position="after">
+                    <field name="arabic_name" placeholder="الاسم باللغه العربية"/>
+                </field>
+            </field>
+        </record>
+        <record id="daqqa_employee_arabic_inherit_form" model="ir.ui.view">
+            <field name="name">daqqa_employee_arabic_inherit_form</field>
+            <field name="model">hr.employee</field>
+            <field name="inherit_id" ref="hr.view_employee_form"/>
+            <field name="arch" type="xml">
+                <field name="job_title" position="before">
+                    <field name="arabic_name" placeholder="الاسم باللغه العربية"/>
+                </field>
+            </field>
+        </record>
+
+    </data>
+</odoo>
