@@ -484,69 +484,71 @@
                                     <tr>
                                         <td colspan="1"
                                             style="text-align:right;border-width:0px;border-color:black;font-size:14px;width:3%;padding-right:15px;">
-                                            إسم البنك :
-                                            <span t-field="o.partner_bank_id.bank_id.arabic_name"/>
+                                            اسم البنك: البنك الأهلي
                                         </td>
                                         <td colspan="1"
                                             style="text-align:left;border-width:0px;border-color:black;font-size:14px;width:3%;padding-left:15px;">
-                                            Bank Name :
-                                            <span t-field="o.partner_bank_id.bank_id.name"/>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td colspan="1"
-                                            style="text-align:right;border-width:0px;border-color:black;font-size:14px;width:3%;padding-right:15px;">
-                                            رقم الحساب :
-                                            <span t-field="o.partner_bank_id.acc_number"/>
-                                        </td>
-                                        <td colspan="1"
-                                            style="text-align:left;border-width:0px;border-color:black;font-size:14px;width:3%;padding-left:15px;">
-                                            Bank A/C No :
-                                            <span t-field="o.partner_bank_id.acc_number"/>
+                                            Bank Name : Alahli Bank
+
                                         </td>
                                     </tr>
 
                                     <tr>
                                         <td colspan="1"
                                             style="text-align:right;border-width:0px;border-color:black;font-size:14px;width:3%;padding-right:15px;">
-                                            إسم رقم الحساب :
-                                            <span t-field="o.partner_bank_id.acc_holder_name"/>
+                                            رقم الإيبان : SA3810 0000 2287 3712 000 107
                                         </td>
                                         <td colspan="1"
                                             style="text-align:left;border-width:0px;border-color:black;font-size:14px;width:3%;padding-left:15px;">
-                                            Bank A/C Name :
-                                            <span t-field="o.partner_bank_id.partner_id"/>
+                                            IBAN NO : SA3810 0000 2287 3712 000 107
                                         </td>
                                     </tr>
-
 
                                     <tr>
                                         <td colspan="1"
                                             style="text-align:right;border-width:0px;border-color:black;font-size:14px;width:3%;padding-right:15px;">
-                                            رقم الإيبان :
-                                            <span t-field="o.partner_bank_id.bank_id.bic"/>
+                                            اسم البنك: مصرف الراجحي
                                         </td>
                                         <td colspan="1"
                                             style="text-align:left;border-width:0px;border-color:black;font-size:14px;width:3%;padding-left:15px;">
-                                            IBAN NO :
-                                            <span t-field="o.partner_bank_id.bank_id.bic"/>
+                                            Bank Name : Alrajhi Bank
+
                                         </td>
                                     </tr>
-
 
                                     <tr>
                                         <td colspan="1"
                                             style="text-align:right;border-width:0px;border-color:black;font-size:14px;width:3%;padding-right:15px;">
-                                            عملة الحساب :
-                                            <span t-field="o.partner_bank_id.currency_id"/>
+                                            رقم الإيبان : SA6780 0005 7260 8010 065 017
                                         </td>
                                         <td colspan="1"
                                             style="text-align:left;border-width:0px;border-color:black;font-size:14px;width:3%;padding-left:15px;">
-                                            Bank A/C Currency
-                                            <span t-field="o.partner_bank_id.currency_id"/>
+                                            IBAN NO : SA6780 0005 7260 8010 065 017
                                         </td>
                                     </tr>
 
+                                    <tr>
+                                        <td colspan="1"
+                                            style="text-align:right;border-width:0px;border-color:black;font-size:14px;width:3%;padding-right:15px;">
+                                            اسم البنك: بنك الانماء
+                                        </td>
+                                        <td colspan="1"
+                                            style="text-align:left;border-width:0px;border-color:black;font-size:14px;width:3%;padding-left:15px;">
+                                            Bank Name : َAlinma Bank
+
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td colspan="1"
+                                            style="text-align:right;border-width:0px;border-color:black;font-size:14px;width:3%;padding-right:15px;">
+                                            رقم الإيبان : SA1205 0000 6820 4671 206 000
+                                        </td>
+                                        <td colspan="1"
+                                            style="text-align:left;border-width:0px;border-color:black;font-size:14px;width:3%;padding-left:15px;">
+                                            IBAN NO : SA1205 0000 6820 4671 206 000
+                                        </td>
+                                    </tr>
 
                                 </table>
                                 <div style="width:100%;border-bottom: 5px solid black;"></div>
@@ -557,7 +559,7 @@
 
                         <div style="width:100%;text-align:center;">
                             <img class="img img-responsive" t-att-src="'/sales_purchase_custom_reports/static/src/img/signature.jpeg'"
-                                 height="150" width="180" />
+                                 height="120" width="180" />
                         </div>
 
 
