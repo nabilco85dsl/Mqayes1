@@ -1,6 +1,8 @@
 <odoo>
     <data>
-        <report id="account_move_custom_report" string="فاتورية ضريبية" model="account.move"
+        <report id="account_move_custom_report"
+                string="فاتورية ضريبية"
+                model="account.move"
                 report_type="qweb-pdf"
                 file="sales_purchase_custom_reports.account_move_report_template"
                 name="sales_purchase_custom_reports.account_move_report_template"
@@ -478,52 +480,6 @@
                                         <td colspan="1"
                                             style="text-align:left;border-width:0px;border-color:black;font-size:14px;width:3%;">
                                             In Case Of Wire Transfer Please Use The Blow Banks Details
-                                        </td>
-                                    </tr>
-
-                                    <tr>
-                                        <td colspan="1"
-                                            style="text-align:right;border-width:0px;border-color:black;font-size:14px;width:3%;padding-right:15px;">
-                                            اسم البنك: البنك الأهلي
-                                        </td>
-                                        <td colspan="1"
-                                            style="text-align:left;border-width:0px;border-color:black;font-size:14px;width:3%;padding-left:15px;">
-                                            Bank Name : Alahli Bank
-
-                                        </td>
-                                    </tr>
-
-                                    <tr>
-                                        <td colspan="1"
-                                            style="text-align:right;border-width:0px;border-color:black;font-size:14px;width:3%;padding-right:15px;">
-                                            رقم الإيبان : SA3810 0000 2287 3712 000 107
-                                        </td>
-                                        <td colspan="1"
-                                            style="text-align:left;border-width:0px;border-color:black;font-size:14px;width:3%;padding-left:15px;">
-                                            IBAN NO : SA3810 0000 2287 3712 000 107
-                                        </td>
-                                    </tr>
-
-                                    <tr>
-                                        <td colspan="1"
-                                            style="text-align:right;border-width:0px;border-color:black;font-size:14px;width:3%;padding-right:15px;">
-                                            اسم البنك: مصرف الراجحي
-                                        </td>
-                                        <td colspan="1"
-                                            style="text-align:left;border-width:0px;border-color:black;font-size:14px;width:3%;padding-left:15px;">
-                                            Bank Name : Alrajhi Bank
-
-                                        </td>
-                                    </tr>
-
-                                    <tr>
-                                        <td colspan="1"
-                                            style="text-align:right;border-width:0px;border-color:black;font-size:14px;width:3%;padding-right:15px;">
-                                            رقم الإيبان : SA6780 0005 7260 8010 065 017
-                                        </td>
-                                        <td colspan="1"
-                                            style="text-align:left;border-width:0px;border-color:black;font-size:14px;width:3%;padding-left:15px;">
-                                            IBAN NO : SA6780 0005 7260 8010 065 017
                                         </td>
                                     </tr>
 

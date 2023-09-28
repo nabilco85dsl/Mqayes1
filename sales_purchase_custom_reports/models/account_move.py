@@ -1,6 +1,7 @@
 from odoo import models, fields, api
 from num2words import num2words
 
+
 class AccountMoveInherit(models.Model):
     _inherit = 'account.move'
 
