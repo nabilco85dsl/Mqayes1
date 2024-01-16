@@ -7,7 +7,7 @@ import io
 from odoo import http
 from num2words import num2words
 from odoo.tools.misc import formatLang, format_date, get_lang
-
+from odoo.exceptions import UserError
 
 class AccountMove(models.Model):
     _inherit = 'account.move'
@@ -21,6 +21,25 @@ class AccountMove(models.Model):
     fixed_value = fields.Float('Value Amount',compute='get_value_amount',store=True,readonly=True)
     total_value = fields.Float('Value Total',compute='get_value_amount',store=True,readonly=True)
     total_discount = fields.Float('Discount Total',compute='get_value_amount',store=True,readonly=True)
+
+    def button_draft(self):
+        for move in self:
+            if move in move.line_ids.mapped('full_reconcile_id.exchange_move_id'):
+                raise UserError(_('You cannot reset to draft an exchange difference journal entry.'))
+            if move.tax_cash_basis_rec_id or move.tax_cash_basis_origin_move_id:
+                # If the reconciliation was undone, move.tax_cash_basis_rec_id will be empty;
+                # but we still don't want to allow setting the caba entry to draft
+                # (it'll have been reversed automatically, so no manual intervention is required),
+                # so we also check tax_cash_basis_origin_move_id, which stays unchanged
+                # (we need both, as tax_cash_basis_origin_move_id did not exist in older versions).
+                raise UserError(_('You cannot reset to draft a tax cash basis journal entry.'))
+            if move.restrict_mode_hash_table and move.state == 'posted':
+                pass
+            # We remove all the analytics entries for this journal
+            move.mapped('line_ids.analytic_line_ids').unlink()
+
+        self.mapped('line_ids').remove_move_reconcile()
+        self.write({'state': 'draft', 'is_move_sent': False})
 
     @api.depends('amount_untaxed','percent_value','amount_residual','invoice_line_ids')
     def get_value_amount(self):
